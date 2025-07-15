@@ -1,4 +1,4 @@
-// LoginScreen.js
+// RegisterScreen.js
 import React, { useState } from 'react';
 import {
   View,
@@ -8,61 +8,99 @@ import {
   StyleSheet,
   Image,
   SafeAreaView,
+  Alert,
 } from 'react-native';
 
-const RegisterScreen = ({navigation}) => {
-  const [phoneNumber, setPhoneNumber] = useState('');
+import auth from '@react-native-firebase/auth';
 
-const handleSignIn = () =>{
-    navigation.navigate("login")
-}
+const RegisterScreen = ({ navigation }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
+  const handleSignIn = () => {
+    navigation.navigate("login");
+  };
 
-const handleSendCode = () =>{
-    navigation.navigate("otpverifiction")
-}
+  const handleRegister = async () => {
+    if (!email || !password || !confirmPassword) {
+      Alert.alert('Error', 'All fields are required');
+      return;
+    }
 
+    if (password !== confirmPassword) {
+      Alert.alert('Error', 'Passwords do not match');
+      return;
+    }
 
+    if (password.length < 6) {
+      Alert.alert('Error', 'Password must be at least 6 characters long');
+      return;
+    }
 
+    try {
+      const userCredential = await auth().createUserWithEmailAndPassword(email, password);
+      Alert.alert('Success', 'Account created successfully!');
+      // Navigate to login or home screen
+      navigation.navigate("login");
+    } catch (error) {
+      let errorMessage = 'Registration failed';
+      
+      switch (error.code) {
+        case 'auth/email-already-in-use':
+          errorMessage = 'This email is already registered';
+          break;
+        case 'auth/invalid-email':
+          errorMessage = 'Please enter a valid email address';
+          break;
+        case 'auth/weak-password':
+          errorMessage = 'Password is too weak';
+          break;
+        default:
+          errorMessage = error.message;
+      }
+      
+      Alert.alert('Error', errorMessage);
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
-             <Image source={require('../assets/logo.png')} style={styles.logo} />
-
+      <Image source={require('../assets/logo.png')} style={styles.logo} />
       <Text style={styles.loginTitle}>Sign Up</Text>
-
 
       <TextInput
         style={styles.input}
-        placeholder="Email"
+        placeholder="EMAIL ID"
         placeholderTextColor="#aaa"
         keyboardType="email-address"
-        value={phoneNumber}
-        onChangeText={setPhoneNumber}
+        autoCapitalize="none"
+        value={email}
+        onChangeText={setEmail}
       />
-        <TextInput
+      <TextInput
         style={styles.input}
-        placeholder="Full Name"
+        placeholder="Password"
         placeholderTextColor="#aaa"
-        keyboardType="default"
-        value={phoneNumber}
-        onChangeText={setPhoneNumber}
+        secureTextEntry={true}
+        value={password}
+        onChangeText={setPassword}
       />
-        <TextInput
+      <TextInput
         style={styles.input}
-        placeholder="Phone Number"
+        placeholder="Confirm Password"
         placeholderTextColor="#aaa"
-        keyboardType="phone-pad"
-        value={phoneNumber}
-        onChangeText={setPhoneNumber}
+        secureTextEntry={true}
+        value={confirmPassword}  // Fixed: was using 'password' instead
+        onChangeText={setConfirmPassword}
       />
 
-      <TouchableOpacity style={styles.sendButton} onPress={handleSendCode}>
-        <Text style={styles.sendButtonText}>Send Code</Text>
+      <TouchableOpacity style={styles.sendButton} onPress={handleRegister}>
+        <Text style={styles.sendButtonText}>Register</Text>
       </TouchableOpacity>
 
       <View style={styles.footer}>
-        <Text>Don’t have an account? </Text>
+        <Text>Already have an account? </Text>
         <TouchableOpacity onPress={handleSignIn}>
           <Text style={styles.signupText}>Sign In</Text>
         </TouchableOpacity>
@@ -81,21 +119,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 20,
   },
-
   logo: {
     width: 126,
     height: 126,
     resizeMode: 'contain',
-    marginBottom:30
+    marginBottom: 30,
   },
   loginTitle: {
     fontSize: 36,
-    color: '#555',
-    marginBottom: 20,
-  },
-
-  subText: {
-    fontSize: 14,
     color: '#555',
     marginBottom: 20,
   },

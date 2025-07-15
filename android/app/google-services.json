@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "937320026451",
+    "firebase_url": "https://tourist-12ae7-default-rtdb.firebaseio.com",
+    "project_id": "tourist-12ae7",
+    "storage_bucket": "tourist-12ae7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:937320026451:android:d6018af35c4e95ceb3d1a6",
+        "android_client_info": {
+          "package_name": "com.example.customerapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBE5HFVKVnz7B8S4AwD3flh-9srQZpeQWI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:937320026451:android:3184d512b8dd9fcfb3d1a6",
+        "android_client_info": {
+          "package_name": "com.example.driversapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBE5HFVKVnz7B8S4AwD3flh-9srQZpeQWI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:937320026451:android:5371aec8db153a32b3d1a6",
+        "android_client_info": {
+          "package_name": "com.harshmeters"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBE5HFVKVnz7B8S4AwD3flh-9srQZpeQWI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

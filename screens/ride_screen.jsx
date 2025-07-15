@@ -75,9 +75,8 @@ const RideScreen = () => {
       </BottomSheet>
 
       {/* Fixed Slider Button at bottom */}
-      <View style={styles.fixedSliderContainer}>
-        <SlideToEndRideButton />
-      </View>
+      
+      
     </View>
   );
 };

@@ -1,7 +1,12 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import { DrawerContentScrollView } from '@react-navigation/drawer';
+import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import ProfileiMG from "../assets/imagePR.png";
+
+const ProfileStack = () => {
+
+    }
 
 const CustomDrawerContent = (props) => {
     const menuItems = [
@@ -10,9 +15,8 @@ const CustomDrawerContent = (props) => {
         { title: 'Ride History', onPress: () => console.log('Ride History') },
         { title: 'FAQ', onPress: () => console.log('FAQ') },
         { title: 'Trusted Contacts', onPress: () => console.log('Trusted Contacts') },
-        { title: 'Help & Support', onPress: () => console.log('Help & Support') },
         { title: 'About', onPress: () => console.log('About') },
-        { title: 'Privacy Policy', onPress: () => console.log('Privacy Policy') },
+        
         { title: 'Terms & Conditions', onPress: () => console.log('Terms & Conditions') },
     ];
 
@@ -24,17 +28,7 @@ const CustomDrawerContent = (props) => {
                     style={styles.profileImage}
                 />
             </View>
-            <View>
-                {menuItems.map((item) => (
-                    <TouchableOpacity 
-                        key={item.title}
-                        onPress={item.onPress} 
-                        style={styles.menuItem}
-                    >
-                        <Text style={styles.menuText}>{item.title}</Text>
-                    </TouchableOpacity>
-                ))}
-            </View>
+        <DrawerItemList {...props}/>
         </DrawerContentScrollView>
     );
 };

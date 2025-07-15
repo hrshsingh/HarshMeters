@@ -39,6 +39,7 @@ export const TopDownDrawer = ({ isVisible, onClose, children, drawerHeightPercen
         translateY.setValue(0); // Reset current value for delta tracking
       },
 
+      
       // When pan gesture moves
       onPanResponderMove: Animated.event(
         [

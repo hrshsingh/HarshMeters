@@ -1,6 +1,11 @@
 apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
+apply plugin: "com.google.gms.google-services"
+apply plugin: "com.google.firebase.crashlytics"
+
+
+
 
 /**
  * This is the configuration block to customize your React Native Android app.
@@ -59,6 +64,8 @@ react {
  */
 def enableProguardInReleaseBuilds = false
 
+
+
 /**
  * The preferred build flavor of JavaScriptCore (JSC)
  *
@@ -74,7 +81,7 @@ def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
 
 android {
     ndkVersion rootProject.ext.ndkVersion
-    //buildToolsVersion rootProject.ext.buildToolsVersion
+    buildToolsVersion "36.0.0"
     compileSdk rootProject.ext.compileSdkVersion
    
 
@@ -98,7 +105,8 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        missingDimensionStrategy 'react-native-camera', 'general' // Use general camera implementation
+        missingDimensionStrategy 'react-native-camera', 'general'
+         // Use general camera implementation
     }
     sourceSets {
         main {
@@ -127,8 +135,15 @@ android {
     }
 }
 
+project.ext.react = [
+  enableHermes: true,  // Make sure Hermes is enabled
+]
+
+
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
+    implementation platform("com.google.firebase:firebase-bom:33.16.0")
+    implementation ("com.google.firebase:firebase-analytics")
     implementation("com.facebook.react:react-android")
 
     if (hermesEnabled.toBoolean()) {
@@ -137,4 +152,11 @@ dependencies {
         implementation jscFlavor
     }
     implementation 'androidx.core:core:1.12.0'
+    implementation 'com.google.mlkit:barcode-scanning:17.2.0'
+}
+
+repositories {
+    google()
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
 }

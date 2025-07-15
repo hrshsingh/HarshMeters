@@ -35,7 +35,7 @@ const DashboardScreen = ({ navigation }) => {
 
         <Text style={styles.centerText}> Scan and go</Text>
 
-        <Pressable style={styles.button} onPress={() => navigation.navigate('ridestart')}>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('scannerpage')}>
           <Text style={styles.buttonText}>For Hire</Text>
         </Pressable>
         
@@ -136,10 +136,9 @@ const styles = StyleSheet.create({
     marginLeft: 30
   },
   offercontainer: {
-    position: 'absolute',
-    top: 685,
-    zIndex: 1,
-    left: 30
+    marginBottom: 20,
+    alignSelf: 'flex-start',
+    marginLeft: 10,
   },
   offertext: {
     color: '#ffffff',

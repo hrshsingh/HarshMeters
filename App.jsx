@@ -1,30 +1,17 @@
+import React from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import {
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-import AppNavigation from './component/appNavigation';
-
+import { StatusBar, useColorScheme } from 'react-native';
+import AppNavigator from './routeConfig/appNavigator';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <AppNavigation />
+      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      <AppNavigator/>
     </GestureHandlerRootView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
 export default App;
-
-

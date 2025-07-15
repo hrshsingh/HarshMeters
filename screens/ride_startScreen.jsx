@@ -19,7 +19,7 @@ const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 const TopDownDrawer = ({ isVisible, onClose, children }) => {
   const translateY = useRef(new Animated.Value(-SCREEN_HEIGHT)).current;
   const backdropOpacity = useRef(new Animated.Value(0)).current;
-  const drawerHeight = SCREEN_HEIGHT * 0.4; // 40% of screen height
+  const drawerHeight = SCREEN_HEIGHT * 0.5; // 40% of screen height
 
   const panResponder = useRef(
     PanResponder.create({
